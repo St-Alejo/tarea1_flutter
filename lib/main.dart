@@ -64,7 +64,17 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
       });
     }
   }
+  void dividir() {
+    final n1 = double.tryParse(numero1Controller.text);
+    final n2 = double.tryParse(numero2Controller.text);
 
+    if (n1 != null && n2 != null){
+      setState(() {
+        resultado = n1 / n2;
+      });
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +107,12 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
             // Botones
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
               children: [
                 ElevatedButton(
                   onPressed: sumar,
@@ -113,10 +124,14 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
                 ),
                 ElevatedButton(
                     onPressed: multiplicar,
-                    child: const Text("Multiplicar"))
+                    child: const Text("Multiplicar")
+                ),
+                ElevatedButton(
+                    onPressed: dividir,
+                    child: const Text("Dividir"))
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
 
             // Resultado en pantalla
             Text(
